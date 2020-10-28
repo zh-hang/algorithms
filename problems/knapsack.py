@@ -19,9 +19,9 @@ def is_over_flow(V, capacities):
     return False
 
 
-def get_data_from_file(file_name):
+def get_data_from_file(filename):
     all_goods = []
-    with open(file_name)as f:
+    with open(filename)as f:
         values = f.readline()[:-1].split(' ')
         weights = f.readline()[:-1].split(' ')
         capacities = int(f.readline())
@@ -62,8 +62,8 @@ if __name__ == '__main__':
     goods, capacities = get_data_from_file(filename)
     r = DFS(goods, [], capacities)
     print('Result is following:')
-    v=0
+    v = 0
     for i in r:
         print(i)
-        v+=i.value
-    print('value: '+str(v))
+        v += i.value
+    print('value: ' + str(v))
