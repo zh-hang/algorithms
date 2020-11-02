@@ -62,7 +62,7 @@ def get_all_routes(G, R):
 
 def get_dis(R):
     dis = 0
-    for i in range(len(R)-1):
+    for i in range(len(R) - 1):
         dis += R[i].get_neighbour_dis(R[i + 1].name)
     return dis
 
@@ -82,6 +82,8 @@ if __name__ == '__main__':
     R = get_all_routes(cities, [[cities[0]]])
     for i in R:
         i.append(cities[0])
-    RR =comp_dis(R)
+    RR = comp_dis(R)
     for i in RR:
         print(i.name, end=' ')
+    print('\nThe distance is', end=' ')
+    print(get_dis(RR))

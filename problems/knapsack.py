@@ -25,8 +25,6 @@ def get_data_from_file(filename):
         values = f.readline()[:-1].split(' ')
         weights = f.readline()[:-1].split(' ')
         capacities = int(f.readline())
-    print(values)
-    print(weights)
     for i in range(len(values)):
         all_goods.append(Good(int(weights[i]), int(values[i])))
     return all_goods, capacities
