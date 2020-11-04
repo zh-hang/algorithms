@@ -1,5 +1,7 @@
 # algorithms
 ## 01背包问题
-使用了DFS解决01背包问题。[源码](problems/knapsack_DFS.py)
+使用了[DFS](problems/knapsack_DFS.py)解决01背包问题。
 ## TSP问题
-通过得到所有的路径比较长短得到路径。[源码](problems/TSP.py)
+通过[得到所有的路径](problems/TSP.py)比较长短得到路径。
+## GSP问题
+通过[BFS](problems/GSP.py)解决了GSP问题。
