@@ -58,6 +58,7 @@ def color(nodes, name_key, color_num):
                 n += 1
     if n >= color_num:
         color_num = n + 1
+        print(color_num)
         nodes[name_key].color = colors[color_num - 1]
     else:
         for i in range(color_num):
@@ -66,13 +67,11 @@ def color(nodes, name_key, color_num):
             nodes[name_key].color = colors[i]
     for i in nodes[name_key].neighbours:
         color(nodes, i, color_num)
-    return color_num
 
 
 if __name__ == '__main__':
     nodes = get_data_from_file('../test/nondirectional_map.txt')
-    k = 0
-    color(nodes, 'A', k)
+    color(nodes, 'A', 0)
     G = nx.Graph()
     node_color = []
     for i in nodes:
