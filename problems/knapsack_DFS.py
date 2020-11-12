@@ -1,13 +1,6 @@
 import copy
-
-
-class Good:
-    def __init__(self, weight, value):
-        self.weight = weight
-        self.value = value
-
-    def __str__(self):
-        return 'weight:' + str(self.weight) + ' value:' + str(self.value)
+from knapsack import Good
+from knapsack import get_data_from_file
 
 
 def is_over_flow(V, capacities):
@@ -17,17 +10,6 @@ def is_over_flow(V, capacities):
     if s > capacities:
         return True
     return False
-
-
-def get_data_from_file(filename):
-    all_goods = []
-    with open(filename)as f:
-        values = f.readline()[:-1].split(' ')
-        weights = f.readline()[:-1].split(' ')
-        capacities = int(f.readline())
-    for i in range(len(values)):
-        all_goods.append(Good(int(weights[i]), int(values[i])))
-    return all_goods, capacities
 
 
 def comp_k(k1, k2):
