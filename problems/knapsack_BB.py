@@ -1,14 +1,9 @@
 import copy
-from knapsack import Good
 from knapsack import get_data_from_file
 
 
 def edge(good, ub, capacity):
     return ub + capacity / good.ratio()
-
-
-def BFS():
-    pass
 
 
 def calculate_value(g):
