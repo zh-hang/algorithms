@@ -4,27 +4,33 @@ city_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
 
 class City:
-    def __init__(self, neighbours):
-        self.neighbours = []
+    def __init__(self, out_neighbours):
+        self.out_neighbours = []
+        self.in_neighbours = []
         self.name = ''
-        for i in range(len(neighbours)):
-            if neighbours[i] == '0':
+        for i in range(len(out_neighbours)):
+            if out_neighbours[i] == '0':
                 self.name = city_names[i]
                 continue
-            self.neighbours.append((city_names[i], int(neighbours[i])))
+            self.out_neighbours.append((city_names[i], int(out_neighbours[i])))
+
+    def get_in_neighbours(self, in_neighbour):
+        self.in_neighbours.append(in_neighbour)
 
     def __eq__(self, other):
         if self.name == other.name:
-            if self.neighbours == other.neighbours:
+            if self.out_neighbours == other.out_neighbours:
                 return True
 
     def __str__(self):
-        return 'name:' + self.name + ' neighbours:' + str(self.neighbours)
+        return 'name: ' + self.name + ', in neighbours' + str(self.in_neighbours) + ', out neighbours:' + str(
+            self.out_neighbours)
 
-    def get_neighbour_dis(self, neighbour):
-        for i in self.neighbours:
+    def get_out_neighbour_dis(self, neighbour):
+        for i in self.out_neighbours:
             if i[0] == neighbour:
                 return i[1]
+        print("error!")
 
 
 def get_data_from_file(filename):
@@ -35,6 +41,11 @@ def get_data_from_file(filename):
             d = l.split(' ')
             cities.append(City(d))
             l = f.readline()
+    for i in cities:
+        for j in i.out_neighbours:
+            for k in cities:
+                if j[0] == k.name:
+                    k.get_in_neighbours((i.name, j[1]))
     return cities
 
 
@@ -63,7 +74,7 @@ def get_all_routes(G, R):
 def get_dis(R):
     dis = 0
     for i in range(len(R) - 1):
-        dis += R[i].get_neighbour_dis(R[i + 1].name)
+        dis += R[i].get_out_neighbour_dis(R[i + 1].name)
     return dis
 
 

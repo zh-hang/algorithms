@@ -49,7 +49,7 @@ def color(nodes, name_key, color_num):
     neighbour_colors = []
     neighbours = []
     n = 0
-    for i in nodes[name_key].neighbours:
+    for i in nodes[name_key].out_neighbours:
         curr = nodes[name_key].get_neighbour(i, nodes)
         neighbours.append(copy.deepcopy(curr))
         if curr is not None:
@@ -65,7 +65,7 @@ def color(nodes, name_key, color_num):
             if colors[i] in neighbour_colors:
                 continue
             nodes[name_key].color = colors[i]
-    for i in nodes[name_key].neighbours:
+    for i in nodes[name_key].out_neighbours:
         color(nodes, i, color_num)
 
 
