@@ -11,3 +11,7 @@
 通过[BFS](problems/GSP.py)解决了GSP问题。
 ## 求第k小值及其位置
 通过[分治法](problems/kth_small.py)解决第k小问题
+
+## 链表排序
+
+[最简单的](problems/list_insert.cpp)链表排序，复杂度为O(n²)
