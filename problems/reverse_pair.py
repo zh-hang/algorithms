@@ -52,9 +52,8 @@ def get_reverse(seq):
 
 if __name__ == '__main__':
     seq = get_data_from_file('../test/seq.txt')
-    l = [1, 7, 15, 3, 9, 2]
-    print(l)
-    reverse, l = get_reverse(l)
+    reverse, l = get_reverse(seq)
+    print("Reverse pair:")
     print(reverse)
+    print("number:")
     print(len(reverse))
-    print(l)

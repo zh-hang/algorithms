@@ -1,7 +1,6 @@
 # algorithms
 
 ## 01背包问题
-
 通过[回溯法](problems/knapsack_DFS.py)解决01背包问题。
 
 通过[分支限定法](problems/knapsack_BB.py)解决01背包问题。
@@ -16,6 +15,11 @@
 
 ## 求第k小值及其位置
 通过[分治法](problems/kth_small.py)解决第k小问题
+
+## 动态规划
+解决[01背包问题](problems/knapsack_DP.py)。
+
+解决[带权值的区间调度问题](problems/interval_schedule_DP.py)
 
 ## 排序
 

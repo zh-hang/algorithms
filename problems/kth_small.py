@@ -41,4 +41,4 @@ if __name__ == "__main__":
         seqs[pos].remove(kth_min)
         if [] in seqs:
             seqs.remove([])
-    print(kth_min)
+    print("Position: "+str(kth_min[0])+" number: "+str(kth_min[1]))
