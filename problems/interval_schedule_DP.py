@@ -1,4 +1,3 @@
-import copy
 import json
 
 
@@ -10,11 +9,6 @@ class Interval:
 
     def __str__(self):
         return 'start time:' + str(self.start_time) + ', end time:' + str(self.end_time) + ', value:' + str(self.value)
-
-    def assign(self, instance):
-        self.start_time = instance.start_time
-        self.end_time = instance.end_time
-        self.value = instance.value
 
 
 class Res:
@@ -32,7 +26,6 @@ def get_data_from_file(filename):
     res = []
     for i in data['i']:
         res.append(Interval(i[0], i[1], i[2]))
-
     for i in range(len(res)):
         for j in range(len(res) - i - 1):
             if res[j].end_time > res[j + 1].end_time:
@@ -44,21 +37,23 @@ def get_data_from_file(filename):
 
 def DP(S, E, SEQ):
     if len(SEQ) <= 0:
-        return 0
+        return Res([], 0)
     seq = []
     max_value = 0
     for i in range(len(SEQ)):
-        curr_res = Res([], 0)
-        if SEQ[i].start_time < SEQ[0].end_time and i + 1 < len(SEQ):
-            curr_res = DP(SEQ[i].end_time, E, SEQ[i + 1:])
-            curr_res.value += SEQ[i].value
-        if curr_res.value > max_value:
-            seq = curr_res.seq + [SEQ[i]]
-            max_value = curr_res.value
+        if SEQ[i].start_time >= S:
+            if SEQ[i].start_time < SEQ[0].end_time and i + 1 <= len(SEQ):
+                curr_res = DP(SEQ[i].end_time, E, SEQ[i + 1:])
+                curr_res.value += SEQ[i].value
+            else:
+                break
+            if curr_res.value > max_value:
+                seq = curr_res.seq + [SEQ[i]]
+                max_value = curr_res.value
     return Res(seq, max_value)
 
 
 if __name__ == '__main__':
-    I, start_time, end_time = get_data_from_file('../test/ISDP.json')
+    I, start_time, end_time = get_data_from_file('../test/ISDP2.json')
     r = DP(start_time, end_time, I)
     print(r)
