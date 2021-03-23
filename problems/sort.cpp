@@ -6,10 +6,12 @@
 class sort
 {
 private:
-public:
     std::vector<int> seq;
+
+public:
     sort(std::vector<int> seq);
     std::vector<int> quickSort(int low, int high);
+    std::vector<int> bubbleSort();
     inline int getLength()
     {
         return this->seq.size();
@@ -17,6 +19,17 @@ public:
     inline std::vector<int> getSeq()
     {
         return this->seq;
+    }
+    inline void printSeq()
+    {
+        std::cout << std::endl;
+        for (int i = 0; i < seq.size(); i++)
+            std::cout << seq[i] << " ";
+        std::cout << std::endl;
+    }
+    inline void setSeq(std::vector<int> seq)
+    {
+        this->seq = seq;
     }
     ~sort();
 };
@@ -34,7 +47,7 @@ std::vector<int> sort::quickSort(int low, int high)
 {
     if (low >= high)
         return seq;
-    int l = low+1, h = high;
+    int l = low + 1, h = high;
     while (l < h)
     {
         if (seq[l] <= seq[low])
@@ -51,26 +64,36 @@ std::vector<int> sort::quickSort(int low, int high)
         seq[l] = seq[h];
         seq[h] = temp;
     }
-
+    int middle;
     if (seq[l] > seq[low])
-    {
-        int temp = seq[l - 1];
-        seq[l - 1] = seq[low];
-        seq[low] = temp;
-        this->quickSort(low, l - 2);
-        this->quickSort(l, high);
-    }
+        middle = l - 1;
     else
-    {
-        int temp = seq[l];
-        seq[l] = seq[low];
-        seq[low] = temp;
-        this->quickSort(low, l - 1);
-        this->quickSort(l + 1, high);
-    }
-
+        middle = l;
+    int temp = seq[middle];
+    seq[middle] = seq[low];
+    seq[low] = temp;
+    this->quickSort(low, middle - 1);
+    this->quickSort(middle + 1, high);
     return seq;
 }
+
+std::vector<int> sort::bubbleSort()
+{
+    for (int i = 0; i < seq.size(); i++)
+    {
+        for (int j = 0; j < seq.size() - i - 1; j++)
+        {
+            if (seq[j] > seq[j + 1])
+            {
+                int temp = seq[j];
+                seq[j] = seq[j + 1];
+                seq[j + 1] = temp;
+            }
+        }
+    }
+    return seq;
+}
+
 
 int main()
 {
@@ -95,11 +118,20 @@ int main()
 
     sort solve(seq);
     std::cout << std::endl;
-    solve.quickSort(0, solve.getLength()-1);
-    for (int i = 0; i < solve.seq.size(); i++)
+    solve.quickSort(0, solve.getLength() - 1);
+    std::cout << "quickSort:";
+    solve.printSeq();
+    solve.setSeq(seq);
+    solve.bubbleSort();
+    std::cout << "bublleSort:";
+    solve.printSeq();
+    solve.setSeq(seq);
+    std::cout<<std::endl<<"testttttttttttttttttttttttttttt!"<<std::endl;
+    std::vector<int> res=solve.getSeq();
+    for (int i = 0; i < res.size(); i++)
     {
-        std::cout << solve.seq[i] << " ";
+        std::cout<<res[i]<<" ";
     }
-
+    
     return 0;
 }
