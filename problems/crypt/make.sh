@@ -1,0 +1,1 @@
+g++  main.cpp crypt.cpp crypt_algorithm.cpp -o main
